@@ -1,20 +1,18 @@
 package frc.robot.subsystems.Swerve;
+import java.io.File;
+
+import Swervelib.parser.SwerveControllerConfiguration;
+import Swervelib.parser.SwerveDriveConfiguration;
+import Swervelib.parser.SwerveParser;
+import Swervelib.telemetry.SwerveController;
+//import Swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
+import Swervelib.telemetry.SwerveDrive;
 //import the library stuffies
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import java.io.File;
-//import Swervelib.SwerveController;
-//import Swervelib.SwerveDrive;
-import Swervelib.math.SwerveKinematics;
-import Swervelib.parser.SwerveControllerConfiguration;
-import Swervelib.parser.SwerveDriveConfiguration;
-import Swervelib.parser.SwerveParser;
-import Swervelib.telemetry.SwerveDrive;
-import Swervelib.telemetry.SwerveController;
-//import Swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 
 public class SwerveSubsystem extends SubsystemBase
 {
