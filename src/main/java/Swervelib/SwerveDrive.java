@@ -583,8 +583,8 @@ public class SwerveDrive
     // Sets states
     for (SwerveModule swerveModule : swerveModules)
     {
-      SwerveModuleState2 desiredState =
-          new SwerveModuleState2(0, swerveModule.configuration.moduleLocation.getAngle(), 0);
+      SwerveModuleState desiredState =
+          new SwerveModuleState(0, swerveModule.configuration.moduleLocation.getAngle(), 0);
       if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal())
       {
         SwerveDriveTelemetry.desiredStates[swerveModule.moduleNumber * 2] =
@@ -670,7 +670,7 @@ public class SwerveDrive
     double sumOmega = 0;
     for (SwerveModule module : swerveModules)
     {
-      SwerveModuleState2 moduleState = module.getState();
+      SwerveModuleState moduleState = module.getState();
       sumOmega += Math.abs(moduleState.omegaRadPerSecond);
       if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH)
       {

@@ -71,7 +71,7 @@ public class SwerveModulePhysicalCharacter
    * @param angleMotorKV                   The kV applied to the steering motor to ensure your drivetrain does not drift
    *                                       towards a direction when rotating while translating.
    */
-  public SwerveModulePhysicalCharacteristics(
+  public SwerveModulePhysicalCharacter(
       double driveGearRatio,
       double angleGearRatio,
       double angleMotorFreeSpeedRPM,
@@ -119,7 +119,7 @@ public class SwerveModulePhysicalCharacter
    * @param driveEncoderPulsePerRotation The number of encoder pulses per motor rotation, 1 for integrated encoders.
    * @param angleEncoderPulsePerRotation The number of encoder pulses per motor rotation, 1 for integrated encoders.
    */
-  public SwerveModulePhysicalCharacteristics(
+  public SwerveModulePhysicalCharacter(
       double driveGearRatio,
       double angleGearRatio,
       double angleMotorFreeSpeedRPM,

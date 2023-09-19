@@ -1,7 +1,7 @@
 package Swervelib.parser.json;
 
+import Swervelib.parser.SwerveModulePhysicalCharacter;
 import edu.wpi.first.math.util.Units;
-import swervelib.parser.SwerveModulePhysicalCharacteristics;
 
 /**
  * {@link swervelib.parser.SwerveModulePhysicalCharacteristics} parsed data. Used to configure the SwerveModule.
@@ -50,9 +50,9 @@ public class PhysicalPropertiesJson
    * @param optimalVoltage Optimal voltage to compensate for and use to calculate drive motor feedforward.
    * @return {@link SwerveModulePhysicalCharacteristics} based on parsed data.
    */
-  public SwerveModulePhysicalCharacteristics createPhysicalProperties(double optimalVoltage)
+  public SwerveModulePhysicalCharacter createPhysicalProperties(double optimalVoltage)
   {
-    return new SwerveModulePhysicalCharacteristics(
+    return new SwerveModulePhysicalCharacter(
         gearRatio.drive,
         gearRatio.angle,
         angleMotorFreeSpeedRPM,

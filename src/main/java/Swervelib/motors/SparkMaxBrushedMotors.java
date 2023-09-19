@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 /**
  * Brushed motor control with SparkMax.
  */
-public class SparkMaxBrushedMotorSwerve extends SwerveMotor
+public class SparkMaxBrushedMotors extends SwerveMotors
 {
 
   /**
@@ -52,7 +52,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor
    * @param countsPerRevolution    The number of encoder pulses for the {@link Type} encoder per revolution.
    * @param useDataPortQuadEncoder Use the encoder attached to the data port of the spark max for a quadrature encoder.
    */
-  public SparkMaxBrushedMotorSwerve(CANSparkMax motor, boolean isDriveMotor, Type encoderType, int countsPerRevolution,
+  public SparkMaxBrushedMotors(CANSparkMax motor, boolean isDriveMotor, Type encoderType, int countsPerRevolution,
                                     boolean useDataPortQuadEncoder)
   {
     // Drive motors **MUST** have an encoder attached.
@@ -100,7 +100,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor
    * @param countsPerRevolution    The number of encoder pulses for the {@link Type} encoder per revolution.
    * @param useDataPortQuadEncoder Use the encoder attached to the data port of the spark max for a quadrature encoder.
    */
-  public SparkMaxBrushedMotorSwerve(int id, boolean isDriveMotor, Type encoderType, int countsPerRevolution,
+  public SparkMaxBrushedMotors(int id, boolean isDriveMotor, Type encoderType, int countsPerRevolution,
                                     boolean useDataPortQuadEncoder)
   {
     this(new CANSparkMax(id, MotorType.kBrushed), isDriveMotor, encoderType, countsPerRevolution,
@@ -193,7 +193,7 @@ public class SparkMaxBrushedMotorSwerve extends SwerveMotor
    * @return The {@link SwerveMotor} for easy instantiation.
    */
   @Override
-  public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
+  public SwerveMotors setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
   {
     if (encoder.getAbsoluteEncoder() instanceof AbsoluteEncoder)
     {

@@ -1,6 +1,6 @@
 package Swervelib.parser;
 
-import static swervelib.math.SwerveMath.calculateMaxAngularVelocity;
+import static Swervelib.math.SwerveMath.*;
 
 /**
  * Swerve Controller configuration class which is used to configure {@link swervelib.SwerveController}.

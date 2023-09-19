@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * {@link com.ctre.phoenix.motorcontrol.can.TalonFX} Swerve Motor. Made by Team 1466 WebbRobotics.
  */
-public class TalonFXSwerve extends SwerveMotor
+public class SwerveTalonFX extends SwerveMotors
 {
 
   /**
@@ -55,7 +55,7 @@ public class TalonFXSwerve extends SwerveMotor
    * @param motor        Motor to use.
    * @param isDriveMotor Whether this motor is a drive motor.
    */
-  public TalonFXSwerve(WPI_TalonFX motor, boolean isDriveMotor)
+  public SwerveTalonFX(WPI_TalonFX motor, boolean isDriveMotor)
   {
     this.isDriveMotor = isDriveMotor;
     this.motor = motor;
@@ -76,7 +76,7 @@ public class TalonFXSwerve extends SwerveMotor
    * @param canbus       CANBus on which the TalonFX is on.
    * @param isDriveMotor Whether the motor is a drive or steering motor.
    */
-  public TalonFXSwerve(int id, String canbus, boolean isDriveMotor)
+  public SwerveTalonFX(int id, String canbus, boolean isDriveMotor)
   {
     this(new WPI_TalonFX(id, canbus), isDriveMotor);
   }
@@ -87,7 +87,7 @@ public class TalonFXSwerve extends SwerveMotor
    * @param id           ID of the TalonFX on the canbus.
    * @param isDriveMotor Whether the motor is a drive or steering motor.
    */
-  public TalonFXSwerve(int id, boolean isDriveMotor)
+  public SwerveTalonFX(int id, boolean isDriveMotor)
   {
     this(new WPI_TalonFX(id), isDriveMotor);
   }
@@ -120,7 +120,7 @@ public class TalonFXSwerve extends SwerveMotor
    * @param encoder The encoder to use.
    */
   @Override
-  public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
+  public SwerveMotors setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
   {
     // Do not support.
     return this;

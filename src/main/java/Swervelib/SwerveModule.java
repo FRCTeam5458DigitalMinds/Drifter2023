@@ -2,8 +2,9 @@ package Swervelib;
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
 import Swervelib.math.SwerveMath;
-import Swervelib.motors.SwerveMotor;
+import Swervelib.motors.SwerveMotors;
 import Swervelib.parser.SwerveModuleConfiguration;
+import Swervelib.simulation.SwerveModuleSimulation;
 import Swervelib.telemetry.SwerveDriveTelemetry;
 import Swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -11,7 +12,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import swervelib.simulation.SwerveModuleSimulation;
 
 /**
  * The Swerve Module class which represents and controls Swerve Modules for the swerve drive.
@@ -30,7 +30,7 @@ public class SwerveModule
   /**
    * Swerve Motors.
    */
-  private final SwerveMotor               angleMotor, driveMotor;
+  private final SwerveMotors               angleMotor, driveMotor;
   /**
    * Absolute encoder for swerve drive.
    */
@@ -46,7 +46,7 @@ public class SwerveModule
   /**
    * Last swerve module state applied.
    */
-  public        SwerveModuleState2     lastState;
+  public        SwerveModuleState     lastState;
   /**
    * Simulated swerve module.
    */
@@ -143,7 +143,7 @@ public class SwerveModule
    * @param force        Disables optimizations that prevent movement in the angle motor and forces the desired state
    *                     onto the swerve module.
    */
-  public void setDesiredState(SwerveModuleState2 desiredState, boolean isOpenLoop, boolean force)
+  public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop, boolean force)
   {
 //    SwerveModuleState simpleState =
 //        new SwerveModuleState(desiredState.speedMetersPerSecond, desiredState.angle);
@@ -227,7 +227,7 @@ public class SwerveModule
    *
    * @return Current SwerveModule state.
    */
-  public SwerveModuleState2 getState()
+  public SwerveModuleState getState()
   {
     double     velocity;
     Rotation2d azimuth;
@@ -241,7 +241,7 @@ public class SwerveModule
     {
       return simModule.getState();
     }
-    return new SwerveModuleState2(velocity, azimuth, omega);
+    return new SwerveModuleState(velocity, azimuth, omega);
   }
 
   /**
@@ -321,7 +321,7 @@ public class SwerveModule
    *
    * @return {@link SwerveMotor} for the angle/steering motor of the module.
    */
-  public SwerveMotor getAngleMotor()
+  public SwerveMotors getAngleMotor()
   {
     return angleMotor;
   }
@@ -331,7 +331,7 @@ public class SwerveModule
    *
    * @return {@link SwerveMotor} for the drive motor of the module.
    */
-  public SwerveMotor getDriveMotor()
+  public SwerveMotors getDriveMotor()
   {
     return driveMotor;
   }

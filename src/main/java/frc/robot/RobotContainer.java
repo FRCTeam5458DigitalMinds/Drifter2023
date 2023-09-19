@@ -38,7 +38,7 @@ public class RobotContainer
   //private final LEDSubsystem m_ledSubsystem = new LEDSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandJoystick       driverController     = new CommandJoystick(OperatorConstants.kDriverControllerPort);
+  private final CommandXboxController driverController     = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   private final CommandJoystick       throttleController   = new CommandJoystick(OperatorConstants.kThrottleControllerPort);
   private final CommandXboxController m_operatorController = new CommandXboxController(
       OperatorConstants.kOperatorControllerPort);

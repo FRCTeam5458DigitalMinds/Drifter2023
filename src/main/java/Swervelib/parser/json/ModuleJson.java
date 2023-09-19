@@ -1,10 +1,10 @@
 package Swervelib.parser.json;
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
-import Swervelib.motors.SwerveMotor;
+import Swervelib.motors.SwerveMotors;
 import Swervelib.parser.PIDFConfig;
 import Swervelib.parser.SwerveModuleConfiguration;
-import Swervelib.parser.SwerveModulePhysicalCharacteristics;
+import Swervelib.parser.SwerveModulePhysicalCharacter;
 import Swervelib.parser.json.modules.BoolMotorJson;
 import Swervelib.parser.json.modules.LocationJson;
 import edu.wpi.first.math.util.Units;
@@ -65,9 +65,9 @@ public class ModuleJson
       PIDFConfig anglePIDF,
       PIDFConfig velocityPIDF,
       double maxSpeed,
-      SwerveModulePhysicalCharacteristics physicalCharacteristics)
+      SwerveModulePhysicalCharacter physicalCharacteristics)
   {
-    SwerveMotor           angleMotor = angle.createMotor(false);
+    SwerveMotors           angleMotor = angle.createMotor(false);
     SwerveAbsoluteEncoder absEncoder = encoder.createEncoder();
 
     // If the absolute encoder is attached.
@@ -91,7 +91,7 @@ public class ModuleJson
         absoluteEncoderInverted,
         inverted.drive,
         inverted.angle,
-        angleEncoderPulsePerRevolution == 0 ? physicalCharacteristics.angleEncoderPulsePerRotation
+        angleEncoderPulsePerRevolution == 0 ? physicalCharacter.angleEncoderPulsePerRotation
                                             : angleEncoderPulsePerRevolution,
         angleMotorFreeSpeedRPM == 0 ? physicalCharacteristics.angleMotorFreeSpeedRPM : angleMotorFreeSpeedRPM);
   }

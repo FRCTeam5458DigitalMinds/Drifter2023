@@ -6,7 +6,7 @@ import Swervelib.parser.PIDFConfig;
 /**
  * Swerve motor abstraction which defines a standard interface for motors within a swerve module.
  */
-public abstract class SwerveMotor
+public abstract class SwerveMotors
 {
 
   /**
@@ -30,7 +30,7 @@ public abstract class SwerveMotor
    * @param encoder The encoder to use.
    * @return The {@link SwerveMotor} for single line configuration.
    */
-  public abstract SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder);
+  public abstract SwerveMotors setAbsoluteEncoder(SwerveAbsoluteEncoder encoder);
 
   /**
    * Configure the integrated encoder for the swerve module. Sets the conversion factors for position and velocity.

@@ -3,6 +3,7 @@ import java.io.File;
 
 import Swervelib.SwerveController;
 import Swervelib.SwerveDrive;
+import Swervelib.math.SwerveKinematics;
 import Swervelib.parser.SwerveControllerConfiguration;
 import Swervelib.parser.SwerveDriveConfiguration;
 import Swervelib.parser.SwerveParser;
@@ -32,7 +33,7 @@ public class SwerveSubsystem extends SubsystemBase
     SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
     try
     {
-      swerveDrive = new SwerveParser(directory).createSwerveDrive()；
+      SwerveDrive = new SwerveParser(directory).createSwerveDrive()；
     } catch (Exception e)
     {
       throw new RuntimeException(e);
@@ -67,13 +68,13 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop)
   {
-    swerveDrive.drive(translation, rotation, fieldRelative, isOpenLoop);
+    SwerveDrive.drive(translation, rotation, fieldRelative, isOpenLoop);
   }
 
   @Override
   public void periodic()
   {
-    swerveDrive.updateOdometry();
+    SwerveDrive.updateOdometry();
   }
 
   @Override
@@ -86,9 +87,9 @@ public class SwerveSubsystem extends SubsystemBase
    *
    * @return {@link SwerveKinematics2} of the swerve drive.
    */
-  public SwerveKinematics2 getKinematics()
+  public SwerveKinematics getKinematics()
   {
-    return swerveDrive.kinematics;
+    return SwerveDrive.kinematics;
   }
 
   /**
@@ -100,7 +101,7 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public void resetOdometry(Pose2d initialHolonomicPose)
   {
-    swerveDrive.resetOdometry(initialHolonomicPose);
+    SwerveDrive.resetOdometry(initialHolonomicPose);
   }
 
   /**
@@ -110,7 +111,7 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public Pose2d getPose()
   {
-    return swerveDrive.getPose();
+    return SwerveDrive.getPose();
   }
 
   /**

@@ -11,14 +11,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import Swervelib.encoders.SwerveAbsoluteEncoder;
 import Swervelib.math.SwerveMath;
 import Swervelib.parser.PIDFConfig;
+import Swervelib.simulation.ctre.PhysicsSim;
 import Swervelib.telemetry.SwerveDriveTelemetry;
 import edu.wpi.first.wpilibj.Timer;
-import swervelib.simulation.ctre.PhysicsSim;
 
 /**
  * {@link com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX} Swerve Motor.
  */
-public class TalonSRXSwerve extends SwerveMotor
+public class SwerveTalonSRX extends SwerveMotors
 {
 
   /**
@@ -56,7 +56,7 @@ public class TalonSRXSwerve extends SwerveMotor
    * @param motor        Motor to use.
    * @param isDriveMotor Whether this motor is a drive motor.
    */
-  public TalonSRXSwerve(WPI_TalonSRX motor, boolean isDriveMotor)
+  public SwerveTalonSRX(WPI_TalonSRX motor, boolean isDriveMotor)
   {
     this.isDriveMotor = isDriveMotor;
     this.motor = motor;
@@ -77,7 +77,7 @@ public class TalonSRXSwerve extends SwerveMotor
    * @param id           ID of the TalonSRX on the canbus.
    * @param isDriveMotor Whether the motor is a drive or steering motor.
    */
-  public TalonSRXSwerve(int id, boolean isDriveMotor)
+  public SwerveTalonSRX(int id, boolean isDriveMotor)
   {
     this(new WPI_TalonSRX(id), isDriveMotor);
   }
@@ -110,7 +110,7 @@ public class TalonSRXSwerve extends SwerveMotor
    * @param encoder The encoder to use.
    */
   @Override
-  public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
+  public SwerveMotors setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
   {
     // Do not support.
     return this;

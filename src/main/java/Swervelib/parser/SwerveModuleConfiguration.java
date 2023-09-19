@@ -1,7 +1,7 @@
 package Swervelib.parser;
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
-import Swervelib.motors.SwerveMotor;
+import Swervelib.motors.SwerveMotors;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Translation2d;
 
@@ -54,11 +54,11 @@ public class SwerveModuleConfiguration
   /**
    * Physical characteristics of the swerve module.
    */
-  public       SwerveModulePhysicalCharacteristics physicalCharacteristics;
+  public       SwerveModulePhysicalCharacter physicalCharacteristics;
   /**
    * The drive motor and angle motor of this swerve module.
    */
-  public       SwerveMotor                         driveMotor, angleMotor;
+  public       SwerveMotors                         driveMotor, angleMotor;
   /**
    * The Absolute Encoder for the swerve module.
    */
@@ -84,8 +84,8 @@ public class SwerveModuleConfiguration
    * @param angleMotorFreeSpeedRPM              The free speed RPM of the angle motor.
    */
   public SwerveModuleConfiguration(
-      SwerveMotor driveMotor,
-      SwerveMotor angleMotor,
+      SwerveMotors driveMotor,
+      SwerveMotors angleMotor,
       SwerveAbsoluteEncoder absoluteEncoder,
       double angleOffset,
       double xMeters,
@@ -93,7 +93,7 @@ public class SwerveModuleConfiguration
       PIDFConfig anglePIDF,
       PIDFConfig velocityPIDF,
       double maxSpeed,
-      SwerveModulePhysicalCharacteristics physicalCharacteristics,
+      SwerveModulePhysicalCharacter physicalCharacteristics,
       boolean absoluteEncoderInverted,
       boolean driveMotorInverted,
       boolean angleMotorInverted,
@@ -136,8 +136,8 @@ public class SwerveModuleConfiguration
    * @param physicalCharacteristics Physical characteristics of the swerve module.
    */
   public SwerveModuleConfiguration(
-      SwerveMotor driveMotor,
-      SwerveMotor angleMotor,
+      SwerveMotors driveMotor,
+      SwerveMotors angleMotor,
       SwerveAbsoluteEncoder absoluteEncoder,
       double angleOffset,
       double xMeters,
@@ -145,7 +145,7 @@ public class SwerveModuleConfiguration
       PIDFConfig anglePIDF,
       PIDFConfig velocityPIDF,
       double maxSpeed,
-      SwerveModulePhysicalCharacteristics physicalCharacteristics)
+      SwerveModulePhysicalCharacter physicalCharacteristics)
   {
     this(
         driveMotor,

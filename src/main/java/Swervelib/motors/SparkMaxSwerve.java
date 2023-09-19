@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 /**
  * An implementation of {@link CANSparkMax} as a {@link SwerveMotor}.
  */
-public class SparkMaxSwerve extends SwerveMotor
+public class SparkMaxSwerve extends SwerveMotors
 {
 
   /**
@@ -157,7 +157,7 @@ public class SparkMaxSwerve extends SwerveMotor
    * @return The {@link SwerveMotor} for easy instantiation.
    */
   @Override
-  public SwerveMotor setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
+  public SwerveMotors setAbsoluteEncoder(SwerveAbsoluteEncoder encoder)
   {
     if (encoder.getAbsoluteEncoder() instanceof AbsoluteEncoder)
     {

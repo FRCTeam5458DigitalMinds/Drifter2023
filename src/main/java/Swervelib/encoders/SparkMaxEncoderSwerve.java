@@ -3,7 +3,7 @@ package Swervelib.encoders;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 
-import Swervelib.motors.SwerveMotor;
+import Swervelib.motors.SwerveMotors;
 
 /**
  * SparkMax absolute encoder, attached through the data port.
@@ -21,7 +21,7 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder
    *
    * @param motor Motor to create the encoder from.
    */
-  public SparkMaxEncoderSwerve(SwerveMotor motor)
+  public SparkMaxEncoderSwerve(SwerveMotors motor)
   {
     if (motor.getMotor() instanceof CANSparkMax)
     {
