@@ -1,9 +1,12 @@
 package Swervelib.parser.json;
 
+import com.revrobotics.SparkMaxRelativeEncoder.Type;
+
 import Swervelib.encoders.AnalogAbsoluteEncoderSwerve;
 import Swervelib.encoders.CANCoderSwerve;
 import Swervelib.encoders.SparkMaxEncoderSwerve;
 import Swervelib.encoders.SwerveAbsoluteEncoder;
+import Swervelib.imu.PigeonSwerve;
 import Swervelib.imu.SwerveIMU;
 import Swervelib.motors.SparkMaxBrushedMotors;
 import Swervelib.motors.SparkMaxSwerve;
@@ -62,8 +65,7 @@ public class DeviceJson
    */
   public Swervelib.imu.SwerveIMU createIMU()
   {
-    switch (type)
-    {
+    switch (type) {
       //case "adis16448":
         //return new ADIS16448Swerve();
       //case "adis16470":
@@ -79,10 +81,10 @@ public class DeviceJson
       //case "navx_mxp":
       //case "navx":
         //return new NavXSwerve(Port.kMXP);
-      //case "pigeon":
+      case "pigeon":
         return new PigeonSwerve(id);
-      case "pigeon2":
-        return new Pigeon2Swerve(id, canbus != null ? canbus : "");
+      //case "pigeon2":
+       // return new Pigeon2Swerve(id, canbus != null ? canbus : "");
       default:
         throw new RuntimeException(type + " is not a recognized absolute encoder type.");
     }

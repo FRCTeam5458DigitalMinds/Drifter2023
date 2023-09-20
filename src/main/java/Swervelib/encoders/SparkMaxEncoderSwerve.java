@@ -2,6 +2,7 @@ package Swervelib.encoders;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxRelativeEncoder.Type;
 
 import Swervelib.motors.SwerveMotors;
 

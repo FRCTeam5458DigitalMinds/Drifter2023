@@ -2,6 +2,7 @@ package Swervelib;
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
 import Swervelib.math.SwerveMath;
+import Swervelib.math.SwerveModuleState;
 import Swervelib.motors.SwerveMotors;
 import Swervelib.parser.SwerveModuleConfiguration;
 import Swervelib.simulation.SwerveModuleSimulation;

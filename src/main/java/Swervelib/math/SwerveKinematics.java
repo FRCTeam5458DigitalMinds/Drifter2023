@@ -287,7 +287,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
       var omegaVector = trigThetaAngle.mult(accelVector);
 
       double omega = (omegaVector.get(1, 0) / speed) - chassisSpeeds.omegaRadiansPerSecond;
-      m_moduleStates[i] = new SwerveModuleState(speed, angle, omega);
+      m_moduleStates[i] = new SwerveModuleState();
     }
 
     return m_moduleStates;
@@ -310,14 +310,14 @@ public class SwerveKinematics extends SwerveDriveKinematics
    * often used for odometry -- determining the robot's position on the field using data from the real-world speed and
    * angle of each module on the robot.
    *
-   * @param wheelStates The state of the modules (as a SwerveModuleState type) as measured from respective encoders and
+   * @param states The state of the modules (as a SwerveModuleState type) as measured from respective encoders and
    *                    gyros. The order of the swerve module states should be same as passed into the constructor of
    *                    this class.
    * @return The resulting chassis speed.
    */
-  public ChassisSpeeds toChassisSpeeds(SwerveModuleState... wheelStates)
+  public ChassisSpeeds toChassisSpeeds(Swervelib.math.SwerveModuleState... states)
   {
-    if (wheelStates.length != m_numModules)
+    if (states.length != m_numModules)
     {
       throw new IllegalArgumentException(
           "Number of modules is not consistent with number of wheel locations provided in "
@@ -327,7 +327,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
 
     for (int i = 0; i < m_numModules; i++)
     {
-      var module = wheelStates[i];
+      var module = states[i];
       moduleStatesMatrix.set(i * 2, 0, module.speedMetersPerSecond * module.angle.getCos());
       moduleStatesMatrix.set(i * 2 + 1, module.speedMetersPerSecond * module.angle.getSin());
     }

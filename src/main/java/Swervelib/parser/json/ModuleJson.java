@@ -91,7 +91,7 @@ public class ModuleJson
         absoluteEncoderInverted,
         inverted.drive,
         inverted.angle,
-        angleEncoderPulsePerRevolution == 0 ? physicalCharacter.angleEncoderPulsePerRotation
+        angleEncoderPulsePerRevolution == 0 ? physicalCharacteristics.angleEncoderPulsePerRotation
                                             : angleEncoderPulsePerRevolution,
         angleMotorFreeSpeedRPM == 0 ? physicalCharacteristics.angleMotorFreeSpeedRPM : angleMotorFreeSpeedRPM);
   }

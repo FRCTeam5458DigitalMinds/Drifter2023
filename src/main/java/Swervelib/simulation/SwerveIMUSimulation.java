@@ -3,7 +3,6 @@ package Swervelib.simulation;
 import java.util.Optional;
 
 import Swervelib.math.SwerveKinematics;
-import Swervelib.math.SwerveModuleState;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -95,17 +94,17 @@ public class SwerveIMUSimulation
    * states to the {@link Field2d}.
    *
    * @param kinematics  {@link SwerveKinematics2} of the swerve drive.
-   * @param states      {@link SwerveModuleState2} array of the module states.
+   * @param swerveModuleStates      {@link SwerveModuleState2} array of the module states.
    * @param modulePoses {@link Pose2d} representing the swerve modules.
    * @param field       {@link Field2d} to update.
    */
   public void updateOdometry(
       SwerveKinematics kinematics,
-      SwerveModuleState[] states,
+      edu.wpi.first.math.kinematics.SwerveModuleState[] swerveModuleStates,
       Pose2d[] modulePoses,
       Field2d field)
   {
-    angle += kinematics.toChassisSpeeds(states).omegaRadiansPerSecond * (timer.get() - lastTime);
+    angle += kinematics.toChassisSpeeds(swerveModuleStates).omegaRadiansPerSecond * (timer.get() - lastTime);
     lastTime = timer.get();
     field.getObject("XModules").setPoses(modulePoses);
   }

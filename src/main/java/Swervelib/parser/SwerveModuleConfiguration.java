@@ -120,6 +120,10 @@ public class SwerveModuleConfiguration
     this.angleMotorEncoderPulsePerRevolution = angleMotorEncoderPulsePerRevolution;
   }
 
+  private double calculateAngleKV(double optimalVoltage, double angleMotorFreeSpeedRPM, double angleGearRatio) {
+    return 0;
+  }
+
   /**
    * Construct a configuration object for swerve modules. Assumes the absolute encoder and drive motor are not
    * inverted.
@@ -181,6 +185,10 @@ public class SwerveModuleConfiguration
     return new SimpleMotorFeedforward(0, kv, ka);
   }
 
+  private double calculateMaxAcceleration(double wheelGripCoefficientOfFriction) {
+    return 0;
+  }
+
   /**
    * Get the encoder conversion for position encoders.
    *
@@ -197,5 +205,15 @@ public class SwerveModuleConfiguration
            : calculateDegreesPerSteeringRotation(
                physicalCharacteristics.angleGearRatio,
                angleMotorEncoderPulsePerRevolution);
+  }
+
+  private double calculateDegreesPerSteeringRotation(double angleGearRatio,
+      double angleMotorEncoderPulsePerRevolution2) {
+    return 0;
+  }
+
+  private double calculateMetersPerRotation(double wheelDiameter, double driveGearRatio,
+      double angleMotorEncoderPulsePerRevolution2) {
+    return 0;
   }
 }

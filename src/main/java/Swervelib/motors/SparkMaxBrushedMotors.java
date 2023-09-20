@@ -4,17 +4,34 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.SparkMaxRelativeEncoder.Type;
+
+import Swervelib.encoders.SwerveAbsoluteEncoder;
+import Swervelib.motors.SparkMaxSwerve.SparkMAX_slotIdx;
+import Swervelib.parser.PIDFConfig;
+import edu.wpi.first.wpilibj.DriverStation;
+
+/*import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxAlternateEncoder;
+import com.revrobotics.SparkMaxPIDController;
+
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
 import Swervelib.motors.SparkMaxSwerve.SparkMAX_slotIdx;
 import Swervelib.parser.PIDFConfig;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
-
+*/
 /**
  * Brushed motor control with SparkMax.
  */

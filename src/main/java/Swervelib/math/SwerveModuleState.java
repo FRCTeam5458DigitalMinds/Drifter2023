@@ -1,11 +1,12 @@
 package Swervelib.math;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
 /**
  * Second order kinematics swerve module state.
  */
-public class SwerveModuleState extends SwerveModuleState
+public class SwerveModuleState extends SwerveModulePosition
 {
 
   /**
