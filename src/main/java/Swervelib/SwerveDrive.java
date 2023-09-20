@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import Swervelib.imu.SwerveIMU;
-import Swervelib.math.SwerveKinematics;
+import Swervelib.math.SwerveKinematics2;
 import Swervelib.math.SwerveMath;
+import Swervelib.math.SwerveModuleState2;
 import Swervelib.parser.SwerveControllerConfiguration;
 import Swervelib.parser.SwerveDriveConfiguration;
 import Swervelib.simulation.SwerveIMUSimulation;
@@ -43,7 +44,7 @@ public class SwerveDrive
   /**
    * Swerve Kinematics object utilizing second order kinematics.
    */
-  public final  SwerveKinematics        kinematics;
+  public final  SwerveKinematics2        kinematics;
   /**
    * Swerve drive configuration.
    */
@@ -112,7 +113,7 @@ public class SwerveDrive
     swerveDriveConfiguration = config;
     swerveController = new SwerveController(controllerConfig);
     // Create Kinematics from swerve module locations.
-    kinematics = new SwerveKinematics(config.moduleLocationsMeters);
+    kinematics = new SwerveKinematics2(config.moduleLocationsMeters);
 
     // Create an integrator for angle if the robot is being simulated to emulate an IMU
     // If the robot is real, instantiate the IMU instead.
@@ -150,10 +151,8 @@ public class SwerveDrive
       SwerveDriveTelemetry.maxSpeed = swerveDriveConfiguration.maxSpeed;
       SwerveDriveTelemetry.maxAngularVelocity = swerveController.config.maxAngularVelocity;
       SwerveDriveTelemetry.moduleCount = swerveModules.length;
-      SwerveDriveTelemetry.sizeFrontBack = Units.metersToInches(SwerveMath.getSwerveModule(swerveModules, true,
-                                                                                           false).moduleLocation.getX() +
-                                                                SwerveMath.getSwerveModule(swerveModules,
-                                                                                           false,
+      SwerveDriveTelemetry.sizeFrontBack = Units.metersToInches(SwerveMath.getSwerveModule(swerveModules, true, false).moduleLocation.getX() +
+                                                                SwerveMath.getSwerveModule(swerveModules, false,
                                                                                            false).moduleLocation.getX());
       SwerveDriveTelemetry.sizeLeftRight = Units.metersToInches(SwerveMath.getSwerveModule(swerveModules, false,
                                                                                            true).moduleLocation.getY() +
@@ -249,7 +248,7 @@ public class SwerveDrive
     }
 
     // Calculate required module states via kinematics
-    SwerveModuleState[] swerveModuleStates = kinematics.toSwerveModuleStates(velocity);
+    SwerveModuleState2[] swerveModuleStates = kinematics.toSwerveModuleStates(velocity);
 
     setRawModuleStates(swerveModuleStates, isOpenLoop);
   }
@@ -260,10 +259,10 @@ public class SwerveDrive
    * @param desiredStates A list of SwerveModuleStates to send to the modules.
    * @param isOpenLoop    Whether to use closed-loop velocity control. Set to true to disable closed-loop.
    */
-  private void setRawModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop)
+  private void setRawModuleStates(SwerveModuleState2[] desiredStates, boolean isOpenLoop)
   {
     // Desaturates wheel speeds
-    SwerveKinematics.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
+    SwerveKinematics2.desaturateWheelSpeeds(desiredStates, swerveDriveConfiguration.maxSpeed);
 
     // Sets states
     for (SwerveModule module : swerveModules)
@@ -272,10 +271,8 @@ public class SwerveDrive
 
       if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal())
       {
-        SwerveDriveTelemetry.desiredStates[module.moduleNumber *
-                                           2] = module.lastState.angle.getDegrees();
-        SwerveDriveTelemetry.desiredStates[(module.moduleNumber * 2) +
-                                           1] = module.lastState.speedMetersPerSecond;
+        SwerveDriveTelemetry.desiredStates[module.moduleNumber * 2] = module.lastState.angle.getDegrees();
+        SwerveDriveTelemetry.desiredStates[(module.moduleNumber * 2) + 1] = module.lastState.speedMetersPerSecond;
       }
       if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH)
       {
@@ -295,7 +292,7 @@ public class SwerveDrive
    * @param desiredStates A list of SwerveModuleStates to send to the modules.
    * @param isOpenLoop    Whether to use closed-loop velocity control. Set to true to disable closed-loop.
    */
-  public void setModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop)
+  public void setModuleStates(SwerveModuleState2[] desiredStates, boolean isOpenLoop)
   {
     setRawModuleStates(kinematics.toSwerveModuleStates(kinematics.toChassisSpeeds(desiredStates)), isOpenLoop);
   }
@@ -584,8 +581,8 @@ public class SwerveDrive
     // Sets states
     for (SwerveModule swerveModule : swerveModules)
     {
-      SwerveModuleState desiredState =
-          new SwerveModuleState(0, swerveModule.configuration.moduleLocation.getAngle(), 0);
+      SwerveModuleState2 desiredState =
+          new SwerveModuleState2(0, swerveModule.configuration.moduleLocation.getAngle(), 0);
       if (SwerveDriveTelemetry.verbosity.ordinal() >= TelemetryVerbosity.HIGH.ordinal())
       {
         SwerveDriveTelemetry.desiredStates[swerveModule.moduleNumber * 2] =
@@ -671,7 +668,7 @@ public class SwerveDrive
     double sumOmega = 0;
     for (SwerveModule module : swerveModules)
     {
-      SwerveModuleState moduleState = module.getState();
+      SwerveModuleState2 moduleState = module.getState();
       sumOmega += Math.abs(moduleState.omegaRadPerSecond);
       if (SwerveDriveTelemetry.verbosity == TelemetryVerbosity.HIGH)
       {

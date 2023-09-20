@@ -2,7 +2,6 @@ package Swervelib.encoders;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxRelativeEncoder.Type;
 
 import Swervelib.motors.SwerveMotors;
 
@@ -26,7 +25,7 @@ public class SparkMaxEncoderSwerve extends SwerveAbsoluteEncoder
   {
     if (motor.getMotor() instanceof CANSparkMax)
     {
-      encoder = ((CANSparkMax) motor.getMotor()).getAbsoluteEncoder(Type.kDutyCycle);
+      encoder = ((CANSparkMax) motor.getMotor()).getAbsoluteEncoder(com.revrobotics.SparkMaxAbsoluteEncoder.Type.kDutyCycle);
     } else
     {
       throw new RuntimeException("Motor given to instantiate SparkMaxEncoder is not a CANSparkMax");

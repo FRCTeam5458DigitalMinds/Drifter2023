@@ -1,12 +1,12 @@
 package Swervelib.math;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.SwerveModulePosition;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 /**
  * Second order kinematics swerve module state.
  */
-public class SwerveModuleState extends SwerveModulePosition
+public class SwerveModuleState2 extends SwerveModuleState
 {
 
   /**
@@ -25,7 +25,7 @@ public class SwerveModuleState extends SwerveModulePosition
   /**
    * Constructs a SwerveModuleState with zeros for speed and angle.
    */
-  public SwerveModuleState()
+  public SwerveModuleState2()
   {
   }
 
@@ -36,7 +36,7 @@ public class SwerveModuleState extends SwerveModulePosition
    * @param angle                The angle of the module.
    * @param omegaRadPerSecond    The angular velocity of the module.
    */
-  public SwerveModuleState(
+  public SwerveModuleState2(
       double speedMetersPerSecond, Rotation2d angle, double omegaRadPerSecond)
   {
     this.speedMetersPerSecond = speedMetersPerSecond;

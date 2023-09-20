@@ -321,7 +321,7 @@ public class SwerveMath
    * @param secondOrderOffsetDegrees Offset calculated using 2nd order kinematics.
    * @return Optimized {@link SwerveModuleState2}
    */
-  public static SwerveModuleState optimize(SwerveModuleState desiredState, Rotation2d currentAngle,
+  public static SwerveModuleState2 optimize(SwerveModuleState2 desiredState, Rotation2d currentAngle,
                                             double secondOrderOffsetDegrees)
   {
     double targetAngle = placeInAppropriate0To360Scope(currentAngle.getDegrees(),
@@ -344,7 +344,7 @@ public class SwerveMath
     {
       targetAngle += 360;
     }
-    return new SwerveModuleState(targetSpeed, Rotation2d.fromDegrees(targetAngle),
+    return new SwerveModuleState2(targetSpeed, Rotation2d.fromDegrees(targetAngle),
                                   desiredState.omegaRadPerSecond);
   }
 
@@ -395,7 +395,7 @@ public class SwerveMath
    * @param lastModuleState Previous {@link SwerveModuleState2} used.
    * @param maxSpeed        Maximum speed of the modules, should be in {@link SwerveDriveConfiguration#maxSpeed}.
    */
-  public static void antiJitter(SwerveModuleState moduleState, SwerveModuleState lastModuleState, double maxSpeed)
+  public static void antiJitter(SwerveModuleState2 moduleState, SwerveModuleState2 lastModuleState, double maxSpeed)
   {
     if (Math.abs(moduleState.speedMetersPerSecond) <= (maxSpeed * 0.01))
     {

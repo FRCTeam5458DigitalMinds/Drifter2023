@@ -2,7 +2,7 @@ package Swervelib;
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
 import Swervelib.math.SwerveMath;
-import Swervelib.math.SwerveModuleState;
+import Swervelib.math.SwerveModuleState2;
 import Swervelib.motors.SwerveMotors;
 import Swervelib.parser.SwerveModuleConfiguration;
 import Swervelib.simulation.SwerveModuleSimulation;
@@ -47,7 +47,7 @@ public class SwerveModule
   /**
    * Last swerve module state applied.
    */
-  public        SwerveModuleState     lastState;
+  public        SwerveModuleState2     lastState;
   /**
    * Simulated swerve module.
    */
@@ -144,15 +144,8 @@ public class SwerveModule
    * @param force        Disables optimizations that prevent movement in the angle motor and forces the desired state
    *                     onto the swerve module.
    */
-  public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop, boolean force)
+  public void setDesiredState(SwerveModuleState2 desiredState, boolean isOpenLoop, boolean force)
   {
-//    SwerveModuleState simpleState =
-//        new SwerveModuleState(desiredState.speedMetersPerSecond, desiredState.angle);
-//    simpleState = SwerveModuleState.optimize(simpleState, getState().angle);
-//    desiredState =
-//        new SwerveModuleState2(
-//            simpleState.speedMetersPerSecond, simpleState.angle, desiredState.omegaRadPerSecond);
-    // Taken from https://github.com/pittsfordrobotics/REVSwerve2023/blob/a13156d573b6390c2130edb741cc7381c4d31583/src/main/java/com/team3181/frc2023/subsystems/swerve/Swerve.java#L101
     desiredState = SwerveMath.optimize(desiredState, getState().angle,
                                        Units.radiansToDegrees(lastState.omegaRadPerSecond * configuration.angleKV) *
                                        0.065); // I am unsure of what the 0.065 represents
@@ -228,7 +221,7 @@ public class SwerveModule
    *
    * @return Current SwerveModule state.
    */
-  public SwerveModuleState getState()
+  public SwerveModuleState2 getState()
   {
     double     velocity;
     Rotation2d azimuth;
@@ -242,7 +235,7 @@ public class SwerveModule
     {
       return simModule.getState();
     }
-    return new SwerveModuleState(velocity, azimuth, omega);
+    return new SwerveModuleState2(velocity, azimuth, omega);
   }
 
   /**

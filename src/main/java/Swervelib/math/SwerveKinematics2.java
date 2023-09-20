@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.Timer;
  * speed. Makes use of {@link SwerveModuleState2} to add the angular velocity that is required of the module as an
  * output.
  */
-public class SwerveKinematics extends SwerveDriveKinematics
+public class SwerveKinematics2 extends SwerveDriveKinematics
 {
 
   /**
@@ -47,7 +47,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
   /**
    * Swerve module states.
    */
-  private final SwerveModuleState[] m_moduleStates;
+  private final SwerveModuleState2[] m_moduleStates;
   /**
    * Previous CoR
    */
@@ -65,7 +65,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
    *
    * @param wheelsMeters The locations of the wheels relative to the physical center of the robot.
    */
-  public SwerveKinematics(Translation2d... wheelsMeters)
+  public SwerveKinematics2(Translation2d... wheelsMeters)
   {
     super(wheelsMeters);
     if (wheelsMeters.length < 2)
@@ -74,7 +74,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
     }
     m_numModules = wheelsMeters.length;
     m_modules = Arrays.copyOf(wheelsMeters, m_numModules);
-    m_moduleStates = new SwerveModuleState[m_numModules];
+    m_moduleStates = new SwerveModuleState2[m_numModules];
     Arrays.fill(m_moduleStates, new SwerveModuleState());
     m_inverseKinematics = new SimpleMatrix(m_numModules * 2, 3);
     bigInverseKinematics = new SimpleMatrix(m_numModules * 2, 4);
@@ -107,7 +107,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
    * @param attainableMaxSpeedMetersPerSecond The absolute max speed that a module can reach.
    */
   public static void desaturateWheelSpeeds(
-      SwerveModuleState[] moduleStates, double attainableMaxSpeedMetersPerSecond)
+      SwerveModuleState2[] moduleStates, double attainableMaxSpeedMetersPerSecond)
   {
     double realMaxSpeed = Collections.max(Arrays.asList(moduleStates)).speedMetersPerSecond;
     if (realMaxSpeed > attainableMaxSpeedMetersPerSecond)
@@ -138,7 +138,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
    * @param attainableMaxRotationalVelocityRadiansPerSecond The absolute max speed the robot can reach while rotating
    */
   public static void desaturateWheelSpeeds(
-      SwerveModuleState[] moduleStates,
+      SwerveModuleState2[] moduleStates,
       ChassisSpeeds currentChassisSpeed,
       double attainableMaxModuleSpeedMetersPerSecond,
       double attainableMaxTranslationalSpeedMetersPerSecond,
@@ -191,7 +191,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
    * {@link #desaturateWheelSpeeds(SwerveModuleState2[], double) DesaturateWheelSpeeds} function to rectify this issue.
    */
   @SuppressWarnings("PMD.MethodReturnsInternalArray")
-  public SwerveModuleState[] toSwerveModuleStates(
+  public SwerveModuleState2[] toSwerveModuleStates(
       ChassisSpeeds chassisSpeeds, Translation2d centerOfRotationMeters)
   {
     var time = m_moduleAccelTimer.get();
@@ -287,7 +287,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
       var omegaVector = trigThetaAngle.mult(accelVector);
 
       double omega = (omegaVector.get(1, 0) / speed) - chassisSpeeds.omegaRadiansPerSecond;
-      m_moduleStates[i] = new SwerveModuleState();
+      m_moduleStates[i] = new SwerveModuleState2();
     }
 
     return m_moduleStates;
@@ -300,7 +300,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
    * @param chassisSpeeds The desired chassis speed.
    * @return An array containing the module states.
    */
-  public SwerveModuleState[] toSwerveModuleStates(ChassisSpeeds chassisSpeeds)
+  public SwerveModuleState2[] toSwerveModuleStates(ChassisSpeeds chassisSpeeds)
   {
     return toSwerveModuleStates(chassisSpeeds, new Translation2d());
   }
@@ -315,7 +315,7 @@ public class SwerveKinematics extends SwerveDriveKinematics
    *                    this class.
    * @return The resulting chassis speed.
    */
-  public ChassisSpeeds toChassisSpeeds(Swervelib.math.SwerveModuleState... states)
+  public ChassisSpeeds toChassisSpeeds(Swervelib.math.SwerveModuleState2... states)
   {
     if (states.length != m_numModules)
     {

@@ -1,6 +1,6 @@
 package Swervelib.simulation;
 
-import Swervelib.math.SwerveModuleState;
+import Swervelib.math.SwerveModuleState2;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.wpilibj.Timer;
@@ -35,7 +35,7 @@ public class SwerveModuleSimulation
   /**
    * Current simulated swerve module state.
    */
-  private       SwerveModuleState state;
+  private       SwerveModuleState2 state;
 
   /**
    * Create simulation class and initialize module at 0.
@@ -45,7 +45,7 @@ public class SwerveModuleSimulation
     timer = new Timer();
     timer.start();
     lastTime = timer.get();
-    state = new SwerveModuleState(0, Rotation2d.fromDegrees(0), 0);
+    state = new SwerveModuleState2(0, Rotation2d.fromDegrees(0), 0);
     fakeSpeed = 0;
     fakePos = 0;
     dt = 0;
@@ -57,7 +57,7 @@ public class SwerveModuleSimulation
    *
    * @param desiredState State the swerve module is set to.
    */
-  public void updateStateAndPosition(SwerveModuleState desiredState)
+  public void updateStateAndPosition(SwerveModuleState2 desiredState)
   {
     dt = timer.get() - lastTime;
     lastTime = timer.get();
@@ -85,7 +85,7 @@ public class SwerveModuleSimulation
    *
    * @return {@link SwerveModuleState2} of the simulated module.
    */
-  public SwerveModuleState getState()
+  public SwerveModuleState2 getState()
   {
     return state;
   }

@@ -2,7 +2,8 @@ package Swervelib.simulation;
 
 import java.util.Optional;
 
-import Swervelib.math.SwerveKinematics;
+import Swervelib.math.SwerveKinematics2;
+import Swervelib.math.SwerveModuleState2;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -99,7 +100,7 @@ public class SwerveIMUSimulation
    * @param field       {@link Field2d} to update.
    */
   public void updateOdometry(
-      SwerveKinematics kinematics,
+      SwerveKinematics2 kinematics,
       edu.wpi.first.math.kinematics.SwerveModuleState[] swerveModuleStates,
       Pose2d[] modulePoses,
       Field2d field)

@@ -4,13 +4,14 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMaxLowLevel.PeriodicFrame;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 
 import Swervelib.encoders.SwerveAbsoluteEncoder;
 import Swervelib.parser.PIDFConfig;
-import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
+//import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 
 /**
  * An implementation of {@link CANSparkMax} as a {@link SwerveMotor}.

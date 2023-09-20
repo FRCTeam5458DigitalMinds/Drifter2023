@@ -7,7 +7,6 @@ package frc.robot;
 import java.io.File;
 
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -290,10 +289,10 @@ new Trigger(
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand()
+ // public Command getAutonomousCommand()
   {
     // An example command will be run in autonomous
-    return Autos.BasicBlueAutoHigh1(drivebase, m_intakeSubsystem);
+    //return Autos.BasicBlueAutoHigh1(drivebase, m_intakeSubsystem);
 
   }
 }

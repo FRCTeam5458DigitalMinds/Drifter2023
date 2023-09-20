@@ -3,7 +3,7 @@ import java.io.File;
 
 import Swervelib.SwerveController;
 import Swervelib.SwerveDrive;
-import Swervelib.math.SwerveKinematics;
+import Swervelib.math.SwerveKinematics2;
 import Swervelib.parser.SwerveControllerConfiguration;
 import Swervelib.parser.SwerveDriveConfiguration;
 import Swervelib.parser.SwerveParser;
@@ -21,7 +21,7 @@ public class SwerveSubsystem extends SubsystemBase
   /**
    * Swerve drive object.
    */
-  //private final SwerveDrive swerveDrive;
+  private final SwerveDrive swerveDrive;
 
   /**
    * Initialize {@link SwerveDrive} with the directory provided.
@@ -30,13 +30,13 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public SwerveSubsystem(File directory)
   {
-    SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
+    SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
     try
     {
-      SwerveDrive = new SwerveParser(directory).createSwerveDrive()；
+      swerveDrive = new SwerveParser(directory).createSwerveDrive();
     } catch (Exception e)
     {
-      throw new RuntimeException(e);
+      throw new RuntimeException(e);
     }
   }
 
@@ -48,9 +48,8 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public SwerveSubsystem(SwerveDriveConfiguration driveCfg, SwerveControllerConfiguration controllerCfg)
   {
-    swerveDrive = new SwerveDrive(driveCfg, controllerCfg);
+    swerveDrive = new SwerveDrive(driveCfg, controllerCfg);
   }
-
   /**
    * The primary method for controlling the drivebase.  Takes a {@link Translation2d} and a rotation rate, and
    * calculates and commands module states accordingly.  Can use either open-loop or closed-loop velocity control for
@@ -68,13 +67,14 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop)
   {
-    SwerveDrive.drive(translation, rotation, fieldRelative, isOpenLoop);
+    
+    swerveDrive.drive(translation, rotation, fieldRelative, isOpenLoop);
   }
 
   @Override
   public void periodic()
   {
-    SwerveDrive.updateOdometry();
+    swerveDrive.updateOdometry();
   }
 
   @Override
@@ -87,9 +87,9 @@ public class SwerveSubsystem extends SubsystemBase
    *
    * @return {@link SwerveKinematics2} of the swerve drive.
    */
-  public SwerveKinematics getKinematics()
+  public SwerveKinematics2 getKinematics()
   {
-    return SwerveDrive.kinematics;
+    return swerveDrive.kinematics;
   }
 
   /**
@@ -101,7 +101,7 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public void resetOdometry(Pose2d initialHolonomicPose)
   {
-    SwerveDrive.resetOdometry(initialHolonomicPose);
+    swerveDrive.resetOdometry(initialHolonomicPose);
   }
 
   /**
@@ -111,7 +111,7 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public Pose2d getPose()
   {
-    return SwerveDrive.getPose();
+    return swerveDrive.getPose();
   }
 
   /**
@@ -163,8 +163,7 @@ public class SwerveSubsystem extends SubsystemBase
    * @param currentHeadingAngleRadians The current robot heading in radians.
    * @return {@link ChassisSpeeds} which can be sent to th Swerve Drive.
    */
-  public ChassisSpeeds getTargetSpeeds(double xInput, double yInput, double headingX, double headingY,
-                                       double currentHeadingAngleRadians)
+  public ChassisSpeeds getTargetSpeeds(double xInput, double yInput, double headingX, double headingY, double currentHeadingAngleRadians)
   {
     return swerveDrive.swerveController.getTargetSpeeds(xInput, yInput, headingX, headingY, currentHeadingAngleRadians);
   }
